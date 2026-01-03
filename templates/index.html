@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Model Metrics Dashboard - Home{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="d-flex justify-content-center gap-3 mt-3">
+    <img src="{{ url_for('static', filename='img/graph-up-arrow.svg') }}"
+      alt="Graph with upward arrow indicating positive growth or improvement" width="90" height="72" class="img-fluid">
+    <img src="{{ url_for('static', filename='img/pie-chart-fill.svg') }}"
+      alt="A pie chart displaying various segments representing different data categories, set against a neutral background, conveying a sense of analysis and insight."
+      width="90" height="72" class="img-fluid">
+    <img src="{{ url_for('static', filename='img/bar-chart-line-fill.svg') }}"
+      alt="Bar chart illustrating data trends over time with varying heights representing different values, set against a light background, conveying a sense of analysis and progress."
+      width="90" height="72" class="img-fluid">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Welcome to the Model Metrics Dashboard!</h5>
+    <p class="card-text">With this tool you can calculate and visualize metrics for your ML model</p>
+    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+  </div>
+</div>
+{% endblock %}

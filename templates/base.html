@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Model Metrics Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}" defer></script>
+</head>
+
+</html>
+
+<body>
+    <header class="">
+        <nav class="navbar navbar-dark navbar-expand bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{url_for('index') }}">
+                    <img src="{{url_for('static', filename='img/bar-chart-line.svg') }}" alt="bar chart logo" width="30"
+                        height="24" class="d-inline-block align-text-top">
+                    Model Metrics Dashboard
+                </a>
+                <form>
+                    <a href="{{url_for('login') }}">
+                        <button class="btn btn-outline-success me-2" type="button">Log
+                            in</button></a>
+                    <a href="{{url_for('register') }}">
+                        <button class="btn btn-sm btn-outline-secondary" type="button">Register</button></a>
+                </form>
+            </div>
+            {% block navbar %}{% endblock %}
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid bg-body-tertiary text-white py-3">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    <footer class="bg-dark text-white text-center fixed-bottom py-3 footer-small">
+        <p>&copy; 2026 Created by kstepniewska-dev</p>
+        <a href="https://github.com/kstepniewska-dev" class="text-white">
+            <img src="{{url_for('static', filename='img/github.svg') }}" alt="GitHub logo" width="30" height="24"
+                class="d-inline-block align-text-top">kstepniewska-dev on GitHub</a>
+        <a href="https://github.com/kstepniewska-dev/model-metrics-dashboard" class="text-white">
+            <img src="{{url_for('static', filename='img/github.svg') }}" alt="GitHub logo" width="30" height="24"
+                class="d-inline-block align-text-top">model-metrics-dashboard on GitHub</a>
+    </footer>
+</body>

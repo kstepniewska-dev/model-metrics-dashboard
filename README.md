@@ -20,7 +20,7 @@ Flask-based web app for uploading CSV files (confusion matrix), calculating and 
 
 3. Run the app
     - run index.py **Bash**:
-        `python index.py`
+        `python run.py`
 
 4. Open web browser
     - browse: 

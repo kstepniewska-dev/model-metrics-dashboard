@@ -7,7 +7,7 @@
   <div class="card-body">
     <h2 class="card-title">Log in to your account</h2>
 
-    <form method="POST" action="{{ url_for('login') }}" id="login-form">
+    <form method="POST" action="{{ url_for('auth.login') }}" id="login-form">
       <!-- Email field -->
       <div class="form-floating mb-2">
         <input 
@@ -56,7 +56,7 @@
       <div class="text-center">
         <p>
           No account yet?
-          <a href="{{ url_for('register') }}" class="text-decoration-none">
+          <a href="{{ url_for('auth.register') }}" class="text-decoration-none">
             Register now
           </a>
         </p>

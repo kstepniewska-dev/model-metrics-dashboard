@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Model Metrics Dashboard{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-icons.min.css') }}">
 </head>
 
 <body>
@@ -16,12 +17,7 @@
         <nav class="navbar navbar-dark navbar-expand bg-dark sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url_for('index') }}">
-                    <img 
-                        src="{{ url_for('static', filename='img/bar-chart-line.svg') }}"
-                        alt="Model Metrics Dashboard"
-                        width="30"
-                        height="24"
-                        class="d-inline-block align-text-top">
+                    <i class="bi bi-bar-chart-line me-2" aria-hidden="true"></i>
                     Model Metrics Dashboard
                 </a>
                 <nav class="d-flex gap-2">
@@ -40,35 +36,19 @@
     </main>
 
     <footer class="bg-dark text-white text-center fixed-bottom py-3 footer-small">
-        <p>&copy; <span id="year">{{ year }}</span> Built by kstepniewska-dev with 
-            <a href="https://getbootstrap.com" class="text-white">
-                <img 
-                    src="{{ url_for('static', filename='img/bootstrap-fill.svg') }}"
-                    alt=""
-                    width="30"
-                    height="24"
-                    class="d-inline-block align-text-top"
-                    aria-hidden="true">Bootstrap
+        <p>&copy; <span id="year">{{ year }}</span> Created by kstepniewska-dev. Built with
+            <a href="https://getbootstrap.com" class="text-white" target="_blank" rel="noopener noreferrer"
+                aria-label="Bootstrap website">
+                <i class="bi bi-bootstrap-fill me-2" aria-hidden="true"></i>Bootstrap
             </a>
         </p>
         <nav aria-label="Social links">
-            <a href="https://github.com/kstepniewska-dev" class="text-white me-3">
-                <img 
-                    src="{{ url_for('static', filename='img/github.svg') }}"
-                    alt=""
-                    width="30"
-                    height="24"
-                    class="d-inline-block align-text-top"
-                    aria-hidden="true">kstepniewska-dev on GitHub
-            </a>
-            <a href="https://github.com/kstepniewska-dev/model-metrics-dashboard" class="text-white">
-                <img 
-                    src="{{ url_for('static', filename='img/github.svg') }}"
-                    alt=""
-                    width="30"
-                    height="24"
-                    class="d-inline-block align-text-top"
-                    aria-hidden="true">model-metrics-dashboard on GitHub
+            <a href="https://github.com/kstepniewska-dev" class="text-white me-3" target="_blank"
+                rel="noopener noreferrer" aria-label="GitHub profile of kstepniewska-dev">
+                <i class="bi bi-github me-2" aria-hidden="true"></i>kstepniewska-dev on GitHub</a>
+            <a href="https://github.com/kstepniewska-dev/model-metrics-dashboard" class="text-white" target="_blank"
+                rel="noopener noreferrer" aria-label="GitHub repository of the model-metrics-dashboard project">
+                <i class="bi bi-github me-2" aria-hidden="true"></i>model-metrics-dashboard repo on GitHub
             </a>
         </nav>
     </footer>

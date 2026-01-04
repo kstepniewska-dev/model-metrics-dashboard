@@ -3,12 +3,90 @@
 {% block title %}Model Metrics Dashboard - Register{% endblock %}
 
 {% block content %}
-<div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-  <label for="floatingInput">Email address</label>
-</div>
-<div class="form-floating">
-  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-  <label for="floatingPassword">Password</label>
-</div>
+<article class="card mb-3">
+  <div class="card-body">
+    <h2 class="card-title">Create your account</h2>
+
+    <form method="POST" action="{{ url_for('register') }}" id="register-form">
+      <!-- Email field -->
+      <div class="form-floating mb-2">
+        <input 
+          type="email"
+          class="form-control"
+          id="register-email"
+          name="email"
+          placeholder="name@example.com"
+          required
+          aria-describedby="email-hint">
+        <label for="register-email">Email address</label>
+        <small id="email-hint" class="form-text text-muted">
+          We'll use this to log you in
+        </small>
+      </div>
+
+      <!-- Password field -->
+      <div class="form-floating mb-2">
+        <input 
+          type="password"
+          class="form-control"
+          id="register-password"
+          name="password"
+          placeholder="Password"
+          required
+          minlength="8"
+          aria-describedby="password-hint">
+        <label for="register-password">Password</label>
+        <small id="password-hint" class="form-text text-muted">
+          Minimum 8 characters
+        </small>
+      </div>
+
+      <!-- Password confirmation field -->
+      <div class="form-floating mb-2">
+        <input 
+          type="password"
+          class="form-control"
+          id="register-password-confirm"
+          name="password_confirm"
+          placeholder="Confirm password"
+          required
+          minlength="8"
+          aria-describedby="password-confirm-hint">
+        <label for="register-password-confirm">Confirm password</label>
+        <small id="password-confirm-hint" class="form-text text-muted">
+          Must match your password
+        </small>
+      </div>
+
+      <!-- Error message container -->
+      {% if error %}
+      <div class="alert alert-danger mb-2" role="alert" id="register-error">
+        {{ error }}
+      </div>
+      {% endif %}
+
+      <!-- Success message container -->
+      {% if success %}
+      <div class="alert alert-success mb-2" role="alert" id="register-success">
+        {{ success }}
+      </div>
+      {% endif %}
+
+      <!-- Submit button -->
+      <div class="d-grid gap-2 mb-2">
+        <button type="submit" class="btn btn-outline-success">Create account</button>
+      </div>
+
+      <!-- Login link -->
+      <div class="text-center">
+        <p>
+          Already have an account?
+          <a href="{{ url_for('login') }}" class="text-decoration-none">
+            Log in
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</article>
 {% endblock %}

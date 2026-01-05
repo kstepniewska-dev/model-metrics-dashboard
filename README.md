@@ -19,7 +19,7 @@ Flask-based web app for uploading CSV files (confusion matrix), calculating and 
     	`pip install -r requirements.txt`
 
 3. Run the app
-    - run index.py **Bash**:
+    - launch run.py **Bash**:
         `python run.py`
 
 4. Open web browser

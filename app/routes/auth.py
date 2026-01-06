@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, session, url_for
 from datetime import datetime
 from app.services.auth_service import create_user
 from app.models.user import User
@@ -13,7 +13,7 @@ def register():
         password = request.form.get('password')
         password_confirm = request.form.get('password_confirm')
         
-    #Validation
+        #Validation
         if not email or not password or not password_confirm:
             return render_template(
                 'register.html',
@@ -45,12 +45,15 @@ def register():
 
         create_user(email, password)
         return render_template(
-            'register.html', 
-            success='Registration successful!', 
+            'register.html',
+            success='Registration successful. Please log in.',
             year=datetime.now().year
             )
             
-    return render_template('register.html', year=datetime.now().year)
+    return render_template(
+        'register.html', 
+        year=datetime.now().year
+        )
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -66,12 +69,27 @@ def login():
                 year=datetime.now().year
             )
         
-        # Here you would typically add code to verify the user's credentials and log them in
+        user = User.query.filter_by(email=email).first()
         
-        return render_template(
-            'login.html',
-            success='Login successful!',
-            year=datetime.now().year
-        )
+        if not user or not user.check_password(password):
+            return render_template(
+                'login.html',
+                error='Invalid email or password.',
+                year=datetime.now().year
+            )
+        
+        session['user_id'] = user.id
+        session['user_email'] = user.email
+        session['user_role'] = user.role
+        
+        return redirect(url_for('main.dashboard'))
     
-    return render_template('login.html', year=datetime.now().year)
+    return render_template(
+        'login.html', 
+        year=datetime.now().year
+        )
+
+@auth.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('main.index'))

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Model Metrics Dashboard - Dashboard{% endblock %}
+
+{% block content %}
+{% if user_role == 'admin' %}
+<article class="card mb-3">
+    <div class="card-body">
+        <h2 class="card-title">Hello, Admin!</h2>
+        <p class="card-text">Manage users and uploaded files.</p>
+    </div>
+</article>
+{% else %}
+<article class="card mb-3">
+    <div class="card-body">
+        <h2 class="card-title">Hello, {{ session.get('user_email') }}!</h2>
+        <p class="card-text">Upload your confusion matrix CSV file to calculate metrics.</p>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('uploads.upload') }}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="csvFile" class="form-label">Upload Confusion Matrix CSV</label>
+                <input class="form-control" type="file" id="csvFile" name="file" accept=".csv" required>
+                <small class="form-text text-muted">
+                    File should be a valid CSV containing confusion matrix data
+                </small>
+            </div>
+            <button type="submit" class="btn btn-success">Upload & Calculate Metrics</button>
+        </form>
+    </div>
+</article>
+
+<!-- Display user's uploads -->
+{% if uploads %}
+<article class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Your Uploads</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Upload Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for upload in uploads %}
+                    <tr>
+                        <td>{{ upload.filename }}</td>
+                        <td>{{ upload.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary">View Results</a>
+                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</article>
+{% endif %}
+{% endif %}
+{% endblock %}

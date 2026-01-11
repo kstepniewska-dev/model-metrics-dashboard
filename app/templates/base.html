@@ -26,7 +26,7 @@
                     <span class="navbar-text text-white-50">
                         <i class="bi bi-person-circle"></i> {{ session.get('user_email') }}
                     </span>
-                    <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary">Dashboard</a>
+                    <a href="{{ url_for('main.dashboard') }}" class="btn btn-dark">My Dashboard</a>
                     <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-secondary">Log out</a>
                     {% else %}
                     <a href="{{ url_for('auth.login') }}" class="btn btn-success">Log in</a>

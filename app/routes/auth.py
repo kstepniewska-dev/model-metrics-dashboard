@@ -16,21 +16,21 @@ def register():
         #Validation
         if not email or not password or not password_confirm:
             return render_template(
-                'register.html',
+                'auth/register.html',
                 error='All fields are required.',
                 year=datetime.now().year
             )
         
         if password != password_confirm:
             return render_template(
-                'register.html',
+                'auth/register.html',
                 error='Passwords do not match.',
                 year=datetime.now().year
             )
         
         if len(password) < 8:
             return render_template(
-                'register.html',
+                'auth/register.html',
                 error='Password must be at least 8 characters long.',
                 year=datetime.now().year
             )
@@ -38,20 +38,20 @@ def register():
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             return render_template(
-                'register.html', 
+                'auth/register.html', 
                 error='Email already registered.', 
                 year=datetime.now().year
                 )
 
         create_user(email, password)
         return render_template(
-            'register.html',
+            'auth/register.html',
             success='Registration successful. Please log in.',
             year=datetime.now().year
             )
             
     return render_template(
-        'register.html', 
+        'auth/register.html', 
         year=datetime.now().year
         )
 
@@ -64,7 +64,7 @@ def login():
         # Validation
         if not email or not password:
             return render_template(
-                'login.html',
+                'auth/login.html',
                 error='Email and password are required.',
                 year=datetime.now().year
             )
@@ -73,7 +73,7 @@ def login():
         
         if not user or not user.check_password(password):
             return render_template(
-                'login.html',
+                'auth/login.html',
                 error='Invalid email or password.',
                 year=datetime.now().year
             )
@@ -85,7 +85,7 @@ def login():
         return redirect(url_for('main.dashboard'))
     
     return render_template(
-        'login.html', 
+        'auth/login.html', 
         year=datetime.now().year
         )
 

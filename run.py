@@ -25,7 +25,6 @@ def create_admin():
             db.session.add(admin)
             db.session.commit()
             print("Admin user created.")
-            return True
             
 if __name__ == '__main__':
     init_db()

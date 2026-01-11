@@ -8,6 +8,10 @@ def create_upload(user_id, filename, filepath):
     db.session.commit()
     return upload
 
+def get_upload_by_id(upload_id):
+    """Get upload by ID (only if not deleted)."""
+    return Upload.query.filter_by(id=upload_id, deleted_at=None).first()
+
 def get_user_uploads(user_id):
     """Retrieve all uploads for a specific user."""
     return Upload.query.filter_by(user_id=user_id, deleted_at=None).all()

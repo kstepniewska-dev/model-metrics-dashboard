@@ -12,10 +12,12 @@ def create_app():
     
     from app.routes.main import main
     from app.routes.auth import auth
-    from app.routes.uploads import uploads
+    from app.routes.admin import admin
+    from app.routes.user import user
     
     app.register_blueprint(main)
     app.register_blueprint(auth)
-    app.register_blueprint(uploads)
+    app.register_blueprint(admin)
+    app.register_blueprint(user)
     
     return app

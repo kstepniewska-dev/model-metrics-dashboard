@@ -1,23 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Model Metrics Dashboard - Dashboard{% endblock %}
+{% block title %}Model Metrics Dashboard - My Uploads{% endblock %}
 
 {% block content %}
-{% if user_role == 'admin' %}
-<article class="card mb-3">
-    <div class="card-body">
-        <h2 class="card-title">Hello, Admin!</h2>
-        <p class="card-text">Manage users and uploaded files.</p>
-    </div>
-</article>
-{% else %}
 <article class="card mb-3">
     <div class="card-body">
         <h2 class="card-title">Hello, {{ session.get('user_email') }}!</h2>
         <p class="card-text">Upload your confusion matrix CSV file to calculate metrics.</p>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ url_for('uploads.upload') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ url_for('user.upload_file') }}" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="csvFile" class="form-label">Upload Confusion Matrix CSV</label>
                 <input class="form-control" type="file" id="csvFile" name="file" accept=".csv" required>
@@ -50,8 +42,9 @@
                         <td>{{ upload.filename }}</td>
                         <td>{{ upload.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary">View Results</a>
-                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                            <form method="POST" action="{{ url_for('user.delete_upload', upload_id=upload.id) }}" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}
@@ -60,6 +53,5 @@
         </div>
     </div>
 </article>
-{% endif %}
 {% endif %}
 {% endblock %}

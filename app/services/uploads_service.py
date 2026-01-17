@@ -18,7 +18,7 @@ def get_user_uploads(user_id):
 
 def get_all_uploads():
     """Retrieve all uploads in the system (for admin)."""
-    return Upload.query.filter_by(deleted_at=None).all()
+    return Upload.query.all()
 
 def soft_delete_upload(upload_id):
     """Soft delete an upload by setting its deleted_at timestamp."""

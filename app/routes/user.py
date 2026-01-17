@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, current_app
 from werkzeug.utils import secure_filename
 from datetime import datetime
-from app.services.uploads_service import create_upload, get_user_uploads, soft_delete_upload, get_upload_by_id
+from app.services.uploads_service import create_upload, get_upload_by_id, get_user_uploads, soft_delete_upload
 from app.services.admin_service import get_user, soft_delete_user
 import os
 
@@ -28,7 +28,6 @@ def delete_account():
         return redirect(url_for('auth.login'))
     
     user_id = session['user_id']
-    
     soft_delete_user(user_id)
     session.clear()
     return redirect(url_for('main.index'))
@@ -90,7 +89,6 @@ def delete_upload(upload_id):
     
     upload = get_upload_by_id(upload_id)
     
-    # Authorization check: user can only delete own uploads
     if upload and upload.user_id == session['user_id']:
         soft_delete_upload(upload_id)
     

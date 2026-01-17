@@ -4,11 +4,11 @@
 
 {% block content %}
 <article class="card mb-3">
-    <div class="card-body">
+    <section class="card-body">
         <h2 class="card-title">Hello, {{ session.get('user_email') }}!</h2>
         <p class="card-text">Upload your confusion matrix CSV file to calculate metrics.</p>
-    </div>
-    <div class="card-body">
+    </section>
+    <section class="card-body">
         <form method="POST" action="{{ url_for('user.upload_file') }}" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="csvFile" class="form-label">Upload Confusion Matrix CSV</label>
@@ -19,13 +19,13 @@
             </div>
             <button type="submit" class="btn btn-success">Upload & Calculate Metrics</button>
         </form>
-    </div>
+    </section>
 </article>
 
 <!-- Display user's uploads -->
 {% if uploads %}
 <article class="card mb-3">
-    <div class="card-body">
+    <section class="card-body">
         <h3 class="card-title">Your Uploads</h3>
         <div class="table-responsive">
             <table class="table table-striped">
@@ -51,7 +51,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </section>
 </article>
 {% endif %}
 {% endblock %}

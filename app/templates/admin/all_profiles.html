@@ -9,5 +9,46 @@
         <p class="card-text">Manage all user profiles in the system.</p>
     </div>
     <!-- Add content for managing user profiles here -->
+    {% if users %}
+    <article class="card mb-3">
+        <section class="card-body">
+            <h3 class="card-title">All Users</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Email</th>
+                            <th>Created At</th>
+                            <th>Deleted At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>
+                                {% if user.deleted_at %}
+                                {{ user.deleted_at.strftime('%Y-%m-%d %H:%M') }}
+                                {% else %}
+                                -
+                                {% endif %}
+                            <td>
+                                <form method="POST" action="{{ url_for('admin.delete_user', user_id=user.id) }}"
+                                    style="display:inline;">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </article>
+    {% endif %}
 </article>
 {% endblock %}

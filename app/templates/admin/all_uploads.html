@@ -5,9 +5,52 @@
 {% block content %}
 <article class="card mb-3">
     <div class="card-body">
-        <h2 class="card-title">All User Uploads</h2>
+        <h2 class="card-title">All Uploads</h2>
         <p class="card-text">Manage all user uploads in the system.</p>
     </div>
-    <!-- Add content for managing user uploads here -->
+    <!-- Managing all user uploads here -->
+    {% if uploads %}
+    <article class="card mb-3">
+        <section class="card-body">
+            <h3 class="card-title">All Uploads</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Upload ID</th>
+                            <th>User ID</th>
+                            <th>Filename</th>
+                            <th>Created At</th>
+                            <th>Deleted At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for upload in uploads %}
+                        <tr>
+                            <td>{{ upload.id }}</td>
+                            <td>{{ upload.user_id }}</td>
+                            <td>{{ upload.filename }}</td>
+                            <td>{{ upload.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>
+                                {% if upload.deleted_at %}
+                                    {{ upload.deleted_at.strftime('%Y-%m-%d %H:%M') }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            <td>
+                                <form method="POST" action="{{ url_for('admin.delete_upload', upload_id=upload.id) }}"
+                                    style="display:inline;">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </article>
+    {% endif %}
 </article>
 {% endblock %}

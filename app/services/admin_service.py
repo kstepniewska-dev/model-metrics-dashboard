@@ -7,8 +7,8 @@ def get_user(user_id):
     return User.query.get(user_id)
 
 def get_all_users():
-    """Retrieve all users in the system."""
-    return User.query.all()
+    """Retrieve all users except admins in the system."""
+    return User.query.filter(User.role != 'admin').all()
 
 def soft_delete_user(user_id):
     """Soft delete a user by setting their deleted_at timestamp."""

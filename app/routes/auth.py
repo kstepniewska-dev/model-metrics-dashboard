@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for
 from datetime import datetime
+import re
 from app.services.auth_service import create_user
 from app.models.user import User
 from app import db
@@ -28,10 +29,12 @@ def register():
                 year=datetime.now().year
             )
         
-        if len(password) < 8:
+        # Password must: be at least 8 chars, contain lower+upper+digit+special, and contain no whitespace
+        password_pattern = r'^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$'
+        if not re.match(password_pattern, password):
             return render_template(
                 'auth/register.html',
-                error='Password must be at least 8 characters long.',
+                error='Hasło musi mieć co najmniej 8 znaków, zawierać małą i wielką literę, cyfrę i znak specjalny oraz nie może zawierać spacji.',
                 year=datetime.now().year
             )
         

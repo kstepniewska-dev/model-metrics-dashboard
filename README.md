@@ -8,11 +8,12 @@ Flask-based web app for uploading CSV files (confusion matrix), calculating and 
 - **matplotlib** for plot creation
 
 ## How to run the app
+### Please, mind that below commands might behave differently depending on OS, python version, etc.
 1. Create virtual environment
     - create venv **Bash**:
-        `python -m venv .venv`
+        `python -m venv .venv` or `python3 -m venv .venv`
     - activate venv **Bash**:
-        `source .venv/Scripts/activate`
+        `source .venv/Scripts/activate` or `source .venv/bin/activate`
 
 2. Install dependencies from *requirements.txt*
     - install libs **Bash**:
@@ -20,7 +21,7 @@ Flask-based web app for uploading CSV files (confusion matrix), calculating and 
 
 3. Run the app
     - launch run.py **Bash**:
-        `python run.py`
+        `python run.py`or `python3 run.py`
 
 4. Open web browser
     - browse: 
